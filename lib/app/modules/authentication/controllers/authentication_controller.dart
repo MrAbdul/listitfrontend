@@ -14,7 +14,7 @@ class AuthenticationController extends GetxController {
   var errors = <String, String>{}.obs;
   var isLoading=false.obs;
   var isRegisterForm=false.obs;
-  GetStorage g = GetStorage('authentication');
+  // GetStorage g = ;
 
 
 
@@ -43,6 +43,7 @@ class AuthenticationController extends GetxController {
     name.value=value;
   }
   void toggleIsRegisterForm(){
+    errors.clear();
     isRegisterForm.value=!isRegisterForm.value;
   }
   void register() async{
@@ -80,7 +81,8 @@ class AuthenticationController extends GetxController {
       }
       print("Error: ${apiResponse.error!.error}");
     } else if (apiResponse.data != null) {
-      g.write("authenticationToken", apiResponse.data!.token);
+      GetStorage().write("authenticationToken", apiResponse.data!.token);
+      GetStorage().write("authenticationExp", apiResponse.data!.expiry);
       print("User created: ${apiResponse.data!.token}");
     }
     isLoading.value=false;

@@ -7,7 +7,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'RestClient.g.dart';
 
-@RestApi(baseUrl: 'http://10.0.2.2:4000/v1')
+@RestApi(baseUrl: 'https://greenlight.abdulalsh.com/v1')
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
